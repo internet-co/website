@@ -1,0 +1,486 @@
+@import "Variables";
+@import "~bulma/bulma.sass";
+
+html, body {
+}
+
+#app {
+}
+
+.title {
+  font-family: $display-font;
+
+  &.is-big {
+    font-size: 5rem;
+    margin-bottom: 1em;
+  }
+}
+
+.subtitle {
+  &.secondary {
+    font-family: $logo-font;
+  }
+}
+
+
+iframe {
+  height: 100% !important;
+}
+
+footer {
+  font-family: $logo-font;
+  font-weight: 400;
+}
+
+blockquote {
+  &.subtitle {
+    font-size: 1.5rem;
+    border-left: 5px solid;
+    padding: 0.5em 0 0.5em 1em;
+  }
+}
+
+.long-logo {
+  height: 1em;
+  display: inline;
+  vertical-align: middle;
+}
+
+#logo {
+  font-family: $logo-font;
+  position: fixed;
+  font-weight: 700;
+  top: 2em;
+  left: 2em;
+  font-size: 1rem;
+  width: 100px;
+  height: 100px;
+  z-index: 99;
+}
+
+@media (max-width: 1650px) {
+  #logo {
+    position: absolute;
+  }
+}
+
+.two-column-text {
+  column-count: 2;
+  column-gap: 1em;
+}
+
+.project {
+  position: relative;
+
+  .description:first-of-type {
+    &:first-letter {
+      font-size: 2em;
+      line-height: 0;
+      color: $red;
+    }
+  }
+}
+
+.waveform {
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  top: 0;
+}
+
+/*.screenshot-container {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+
+  .screenshot-thumbanil {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    background-color: $black;
+    display: inline-block;
+    line-height: 0;
+    border-radius: 10px;
+    border: solid 10px $black;
+
+    min-width: 300px;
+    min-height: 200px;
+
+    box-shadow: -50px 80px 90px -12px rgba(0, 0, 0, 0.6), -50px 80px 200px -6px rgba(0, 0, 0, 0.3);
+    transform-style: preserve-3d;
+    transform: translateX(0px) translateY(50px) rotateX(45deg) rotateY(-2deg) rotateZ(-38deg);
+
+    &:before, &:after {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    &:after {
+      background-image: linear-gradient(245deg, rgba(255, 255, 255, 0.05),
+              rgba(255, 255, 255, 0.25) 35%, transparent 35%);
+      background-size: 100%;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      transform: translateX(0px) translateY(0px) translateZ(1px);
+      transition: all 0.3s ease-in-out;
+    }
+
+    &:hover {
+      box-shadow: 0px 0px 90px -12px rgba(0, 0, 0, 0.6), 0px 0px 200px -6px rgba(0, 0, 0, 0.3);
+      transform: translateX(0px) translateY(50px) translateZ(100px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+
+      &:after {
+        opacity: 0;
+      }
+    }
+  }
+
+  .screenshot-full-container {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transform: translateZ(200px);
+  }
+
+  .screenshot-full {
+    max-width: 100vw;
+    max-height: 100vh;
+    border: solid 40px $black;
+    border-radius: 20px;
+    line-height: 0;
+    background-color: $black;
+  }
+}*/
+
+.film-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  pointer-events: none;
+
+  &:after {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    box-shadow: inset 0 0 10em rgba(0, 0, 0, 1);
+    content: '';
+    animation: vignette 5s infinite;
+  }
+
+  .outer-scratch, .inner-scratch {
+    height: inherit;
+  }
+
+  .outer-scratch:after, .inner-scratch:after {
+    content: '';
+    width: 120%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: 100px;
+    opacity: .08;
+    background: url("../media/scratch.png") repeat center center;
+    animation: scratch 0.45s steps(1) infinite;
+  }
+
+  .inner-scratch:after {
+    left: 30%;
+    animation: inner-scratch 2s infinite;
+  }
+
+  .grain:after {
+    content: '';
+    width: 110%;
+    height: 110%;
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    opacity: .11;
+    background: url("../media/grain.png") repeat center center;
+    animation: grain 0.5s steps(1) infinite;
+  }
+
+  /* Film Animations */
+  // Grain
+  @keyframes grain {
+    0%, 100% {
+      transform: translate(0, 0);
+    }
+
+    10% {
+      transform: translate(-1%, -1%);
+    }
+
+    20% {
+      transform: translate(1%, 1%);
+    }
+
+    30% {
+      transform: translate(-2%, -2%);
+    }
+
+    40% {
+      transform: translate(3%, 3%);
+    }
+
+    50% {
+      transform: translate(-3%, -3%);
+    }
+
+    60% {
+      transform: translate(4%, 4%);
+    }
+
+    70% {
+      transform: translate(-4%, -4%);
+    }
+
+    80% {
+      transform: translate(2%, 2%);
+    }
+
+    90% {
+      transform: translate(-3%, -3%);
+    }
+  }
+
+  // Quick Scratches
+  @keyframes scratch {
+    0%, 100% {
+      transform: translateX(0);
+      opacity: 0.075;
+    }
+
+    10% {
+      transform: translateX(-1%);
+    }
+
+    20% {
+      transform: translateX(1%);
+    }
+
+    30% {
+      transform: translateX(-2%);
+      opacity: 0.09;
+    }
+
+    40% {
+      transform: translateX(3%);
+    }
+
+    50% {
+      transform: translateX(-3%);
+      opacity: 0.05;
+    }
+
+    60% {
+      transform: translateX(8%);
+    }
+
+    70% {
+      transform: translateX(-3%);
+    }
+
+    80% {
+      transform: translateX(10%);
+      opacity: 0.02;
+    }
+
+    90% {
+      transform: translateX(-2%);
+    }
+  }
+
+  // Long Scratches
+  @keyframes inner-scratch {
+    0% {
+      transform: translateX(0);
+      opacity: 0.08;
+    }
+
+    10% {
+      transform: translateX(-1%);
+    }
+
+    20% {
+      transform: translateX(1%);
+    }
+
+    30% {
+      transform: translateX(-2%);
+    }
+
+    40% {
+      transform: translateX(3%);
+    }
+
+    50% {
+      transform: translateX(-3%);
+      opacity: 0.06;
+    }
+
+    60% {
+      transform: translateX(8%);
+    }
+
+    70% {
+      transform: translateX(-3%);
+    }
+
+    80% {
+      transform: translateX(10%);
+      opacity: 0.03;
+    }
+
+    90% {
+      transform: translateX(20%);
+    }
+
+    100% {
+      transform: translateX(30%);
+    }
+  }
+
+
+  /* Simple Title Animation */
+  @keyframes draw {
+    0% {
+      width: 0%;
+    }
+
+    100% {
+      width: 110%;
+    }
+  }
+
+
+  @keyframes draw-bottom {
+    0% {
+      width: 0%;
+    }
+
+    100% {
+      width: 100%;
+    }
+  }
+
+
+  @keyframes fade {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes vignette {
+    0% {
+      opacity: 1;
+    }
+    10% {
+      opacity: 0.85;
+    }
+    20% {
+      opacity: 0.9;
+    }
+    30% {
+      opacity: 1;
+    }
+    40% {
+      opacity: 0.85;
+    }
+    50% {
+      opacity: 0.80;
+    }
+    60% {
+      opacity: 0.85;
+    }
+    70% {
+      opacity: 0.8
+    }
+    80% {
+      opacity: 0.95;
+    }
+    90% {
+      opacity: 0.90;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+.customer-logo {
+  width: 128px;
+  height: 128px;
+}
+
+.figure-image {
+  opacity: 0.1;
+  position: absolute;
+}
+
+.screenshot {
+  &.tablet {
+    //width: 800px;
+    /* increase X: flatter */
+    transform: perspective(10000px) rotateY(25deg) rotateX(50deg) rotateZ(-25deg) scale(1) translate(100px, 30px);
+    box-shadow: -10px 3px 3px 1px #ccc,
+    -1px 1px 0px #aaa,
+    -2px 2px 0px #aaa,
+    -3px 3px 0px #aaa,
+    -4px 4px 0px #aaa,
+    -5px 5px 0px #aaa,
+    -6px 6px 0px #aaa,
+    -7px 7px 0px #aaa,
+    -8px 8px 0px #aaa,
+    -9px 9px 0px #aaa,
+    -10px 10px 0px #aaa,
+    -11px 11px 0px #aaa,
+    -40px 40px 40px rgba(0, 30, 50, 0.6);
+    border-radius: 40px;
+    border: solid 50px #fafafa;
+  }
+
+  &.phone {
+    transform: perspective(10000px) rotateY(25deg) rotateX(50deg) rotateZ(-25deg) scale(1) translate(100px, 30px);
+    box-shadow: -10px 3px 3px 1px #ccc,
+    -1px 1px 0px #aaa,
+    -2px 2px 0px #aaa,
+    -3px 3px 0px #aaa,
+    -4px 4px 0px #aaa,
+    -5px 5px 0px #aaa,
+    -6px 6px 0px #aaa,
+    -7px 7px 0px #aaa,
+    -8px 8px 0px #aaa,
+    -9px 9px 0px #aaa,
+    -10px 10px 0px #aaa,
+    -11px 11px 0px #aaa,
+    -40px 40px 40px rgba(0, 30, 50, 0.6);
+    border-radius: 40px;
+    border: solid 10px #fafafa;
+  }
+}
